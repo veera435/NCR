@@ -28,10 +28,12 @@
         String audit_area = request.getParameter("audit_area").toString();
         String staff_no = request.getParameter("staff_no").toString();
         String aac_no = request.getParameter("aac_no").toString();
+        String fy_year = request.getParameter("fyyear").toString();
 
         String qstring = "SELECT A.NCR_NO, A.NCR_TYPE, ISNULL(A.NCR_CLS_CONF,''), ISNULL(A.AUDITOR_ACTION,''), A.AUDITOR_STAFF_NO, A.NCR_DETAILS, A.ISO_CLAUSE, B.Audit_Name FROM [dbo].[AUDIT_INT_EXT] A INNER JOIN  [dbo].[Audit_Area_Types] B ON A.AUDIT_AREA = B.Audit_ID";
+        qstring = qstring + " WHERE FY_YEAR = '" + fy_year + "'";
         if (!aac_no.equalsIgnoreCase("2")) {
-            qstring = qstring + " WHERE STAFF_NO = " + staff_no + " OR AUDITEE_STAFF_NO = '" + staff_no + "'" + " OR HOS_STFNO = '" + staff_no + "'" + " OR COLEAD_STFNO = '" + staff_no + "'";
+            qstring = qstring + " AND (STAFF_NO = " + staff_no + " OR AUDITEE_STAFF_NO = '" + staff_no + "'" + " OR HOS_STFNO = '" + staff_no + "'" + " OR COLEAD_STFNO = '" + staff_no + "')";
             if (!audit_area.equalsIgnoreCase("0")) {
                 qstring = qstring + " AND AUDIT_AREA = " + audit_area + "";
             }
@@ -39,7 +41,7 @@
         else
         {
             if (!audit_area.equalsIgnoreCase("0")) {
-                qstring = qstring + " WHERE AUDIT_AREA = " + audit_area + "";
+                qstring = qstring + " AND AUDIT_AREA = " + audit_area + "";
             }
         }
 

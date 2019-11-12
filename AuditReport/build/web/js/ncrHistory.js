@@ -157,7 +157,7 @@ function setPageAccess()
 {
     var aacCode = $('#AUDITOR_AUDITEE_COORD').val();
     //alert(aacCode);
-debugger;
+    debugger;
     switch (aacCode) {
         case "0": // For Auditor
         {
@@ -169,7 +169,7 @@ debugger;
             $("#A_RCA_DT, #A_CORR_ACTION_DT").hide();
             $("#COLEAD_AUDITOR_ACTION, #HOS_ACTION").prop('style', 'pointer-events: none;');
             $("#COLEAD_NAME").prop('readonly', false);
-            
+
             break;
         }
         case "1": // AUDITEE
@@ -202,7 +202,7 @@ debugger;
         }
         case "3": // HOS
         {
-             $("#AUDITOR_ACTION").prop('style', 'pointer-events: none;');
+            $("#AUDITOR_ACTION").prop('style', 'pointer-events: none;');
             $("#CORRECTION_NAME,#RCA_NAME,#RCA,#CORR_ACTION_NAME,#CORR_ACTION,#CORRECTION,#AUDITEE_REMARKS_CLS,#ISO_CLAUSE,#AUDIT_OBSERVATION,#DOC_REF").prop('readonly', true);
             $("#NCR_CLS_CONF").prop('style', 'pointer-events: none;');
             $("#ISO_COORD_REMARKS,#AUDITOR_REMARKS, #NCR_DETAILS,#COLEAD_AUDITOR_REMARKS").prop('readonly', true);
@@ -242,7 +242,7 @@ function getNCRList(aacno, staffno)
         $('#tblNcr tbody').html('');
         $.ajax({
             url: "AuditNcrList.jsp",
-            data: {audit_area: $('#AUDIT_AREA').val(), staff_no: staffno, aac_no: aacno},
+            data: {audit_area: $('#AUDIT_AREA').val(), staff_no: staffno, aac_no: aacno, fyyear: $('#FY_YEAR').val()},
             success: function (data) {
                 if (data.length > 0) {
                     data = JSON.parse(data);
@@ -251,11 +251,11 @@ function getNCRList(aacno, staffno)
                     for (var i = 0; i < data.length; i++)
                     {
                         table = table + '<tr>';
-                        table = table + '<td>' + data[i].AUDITOR_STAFF_NO + '</td>'; 
+                        table = table + '<td>' + data[i].AUDITOR_STAFF_NO + '</td>';
                         table = table + '<td style="cursor:pointer;" onclick="getDetails(' + data[i].NCRNO + ');">' + data[i].NCRNO + '</td>';
                         table = table + '<td>' + data[i].Audit_Name + '</td>';
                         table = table + '<td>' + data[i].NCR_DETAILS + '</td>';
-                         table = table + '<td>' + data[i].ISO_CLAUSE + '</td>';
+                        table = table + '<td>' + data[i].ISO_CLAUSE + '</td>';
                         table = table + '<td>' + data[i].NCR_TYPE + '</td>';
                         table = table + '<td>' + data[i].NCR_CLS_CONF + '</td>';
                         table = table + '<td>' + data[i].AUDITOR_ACTION + '</td>';
