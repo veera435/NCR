@@ -58,10 +58,16 @@
         if (session.getAttribute("ncrobj") != null) {
 
             objNcr = (NcrAudit) session.getAttribute("ncrobj");
-            session.setAttribute("ncrobj",null);
-        }
-    } catch (Exception e) {
-        System.out.println("Exception " + e.toString());%>
+            
+            {%>
+<script>
+    alert("NCR: <%= objNcr.getNCR_NO()%> created successfully!");
+</script>
+<%}
+        session.setAttribute("ncrobj", null);
+    }
+} catch (Exception e) {
+    System.out.println("Exception " + e.toString());%>
 <jsp:forward page="errorpage.jsp"></jsp:forward>
 <%}%>
 
@@ -162,15 +168,15 @@
                             <font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>AUDITEE_NAME <font color="#FF0000">*</font></strong></font>
                         </td>
                         <td>
-                           <input name="AUDITEE_NAME" type="text" id="AUDITEE_NAME" size="25" value="<%=objNcr.getAUDITEE_NAME() != null ? objNcr.getAUDITEE_NAME() : "" %>" />  
-                            <input name="AUDITEE_NAME_HIDDEN" id="AUDITEE_NAME_HIDDEN" type="hidden" value="<%=objNcr.getAUDITEE_NAME() != null ? objNcr.getAUDITEE_NAME() : "" %>" />
+                            <input name="AUDITEE_NAME" type="text" id="AUDITEE_NAME" size="25" value="<%=objNcr.getAUDITEE_NAME() != null ? objNcr.getAUDITEE_NAME() : ""%>" />  
+                            <input name="AUDITEE_NAME_HIDDEN" id="AUDITEE_NAME_HIDDEN" type="hidden" value="<%=objNcr.getAUDITEE_NAME() != null ? objNcr.getAUDITEE_NAME() : ""%>" />
                         </td>
                     </tr>
 
                     <tr bgcolor="#AED6F1">
                         <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>AUDITEE_STFNO </strong></font></td>
                         <td>
-                            <input name="AUDITEE_STFNO" type="text" id="AUDITEE_STFNO" size="25" value="<%=objNcr.getAUDITEE_STFNO() != null ? objNcr.getAUDITEE_STFNO() : "" %>"   />                   
+                            <input name="AUDITEE_STFNO" type="text" id="AUDITEE_STFNO" size="25" value="<%=objNcr.getAUDITEE_STFNO() != null ? objNcr.getAUDITEE_STFNO() : ""%>"   />                   
                         </td>
                     </tr>
 
@@ -191,15 +197,15 @@
                     <tr bgcolor="#AED6F1">
                         <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>AUDITOR_EXT_NAME </strong></font></td>
                         <td>
-                            <input name="AUDITOR_EXT_NAME" type="text" id="AUDITOR_EXT_NAME" size="25" value="<%=objNcr.getAUDITOR_EXT_NAME() != null ? objNcr.getAUDITOR_EXT_NAME() : "" %>" <%=AUDITER_TYPE.equalsIgnoreCase("0") ? "disabled" : ""%> >                    
+                            <input name="AUDITOR_EXT_NAME" type="text" id="AUDITOR_EXT_NAME" size="25" value="<%=objNcr.getAUDITOR_EXT_NAME() != null ? objNcr.getAUDITOR_EXT_NAME() : ""%>" <%=AUDITER_TYPE.equalsIgnoreCase("0") ? "disabled" : ""%> >                    
                         </td>
                     </tr>
 
 
                     <tr bgcolor="#AED6F1">
-                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>AUDIT_OBSERVATION </strong></font></td>
+                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>AUDIT_OBSERVATION <font color="#FF0000">*</font> </strong></font></td>
                         <td>
-                            <textarea name="AUDIT_OBSERVATION"  id="AUDIT_OBSERVATION" size="25" style="margin: 0px; width: 164px; height: 43px;" ><%= objNcr.getAUDIT_OBSERVATION() != null ? objNcr.getAUDIT_OBSERVATION() : "" %></textarea>   
+                            <textarea name="AUDIT_OBSERVATION"  id="AUDIT_OBSERVATION" size="25" style="margin: 0px; width: 164px; height: 43px;" ><%= objNcr.getAUDIT_OBSERVATION() != null ? objNcr.getAUDIT_OBSERVATION() : ""%></textarea>   
                         </td>
                     </tr>
 
@@ -223,7 +229,7 @@
                     </tr>
 
                     <tr bgcolor="#AED6F1">
-                        <td ><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>NCR_PLAN_CLS_DATE  <font color="#FF0000">*</font> </strong></font></td>
+                        <td ><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>NCR_PLAN_CLS_DATE   </strong></font></td>
 
                         <td  ><input name="NCR_PLAN_CLS_DATE" type="text" id="NCR_PLAN_CLS_DATE" size="25" value="<%=NCR_PLAN_CLS_DATE%>" >
                             <a href="javascript:NewCal('NCR_PLAN_CLS_DATE','ddmmmyyyy')">
@@ -234,7 +240,7 @@
                     <tr bgcolor="#AED6F1">
                         <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>ISO_CLAUSE  </strong></font></td>
                         <td>
-                            <input name="ISO_CLAUSE" type="text" id="ISO_CLAUSE" size="25" value="<%= ISO_CLAUSE %>" />  
+                            <input name="ISO_CLAUSE" type="text" id="ISO_CLAUSE" size="25" value="<%= ISO_CLAUSE%>" />  
                         </td>
                     </tr>
                     <tr bgcolor="#AED6F1">
@@ -295,12 +301,12 @@
         }
         function validlogin()
         {
-            debugger;
+
             var FY_YEAR = document.main.FY_YEAR.value;
             var AUDIT_DATE = document.main.AUDIT_DATE.value.trim();
             var AUDIT_AREA = document.main.AUDIT_AREA.value;
             var AUDITEE_NAME = document.main.AUDITEE_NAME.value;
-            var NCR_PLAN_CLS_DATE = document.main.NCR_PLAN_CLS_DATE.value.trim();
+            var AUDIT_OBSERVATION = document.main.AUDIT_OBSERVATION.value;
             if (FY_YEAR.length === 0 || FY_YEAR === "-")
             {
                 alert("* Marked fields are mandatory.");
@@ -328,13 +334,13 @@
                 document.main.AUDITEE_NAME.focus();
                 return false;
             }
-
-            if (NCR_PLAN_CLS_DATE.length === 0)
+            if (AUDIT_OBSERVATION.length === 0)
             {
                 alert("* Marked fields are mandatory.");
-                document.main.NCR_PLAN_CLS_DATE.focus();
+                document.main.AUDIT_OBSERVATION.focus();
                 return false;
             }
+
             return true;
         }
         function saveform() {
