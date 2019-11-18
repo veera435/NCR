@@ -376,7 +376,7 @@
                     </tr>
 
                     <tr bgcolor="#AED6F1">
-                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>CORR_DT</strong></font></td>
+                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>CORR_DATE</strong></font></td>
                         <td><input name="CORR_DT" type="text" id="CORR_DT" size="25" value="<%= objNcr.getCORR_DT() != null ? objNcr.getCORR_DT() : ""%>" readonly>
                             <a href="javascript:NewCal('CORR_DT','ddmmmyyyy')" class="isolog" id="A_CORR_DT">
                                 <img src="images/calendar.jpg" width="20" height="20" border="0" alt="Pick a date" style="vertical-align: bottom;"/></a>
@@ -384,21 +384,21 @@
                     </tr>
 
                     <tr bgcolor="#AED6F1">
-                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>CORRECTION_NAME  </strong></font></td>
+                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>CORRECTION BY  </strong></font></td>
                         <td>
                             <input name="CORRECTION_NAME" type="text" id="CORRECTION_NAME" value="<%= objNcr.getCORRECTION_NAME() != null ? objNcr.getCORRECTION_NAME() : ""%>" > 
                         </td>
                     </tr>
 
                     <tr bgcolor="#AED6F1">
-                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>RCA  </strong></font></td>
+                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>ROOT CAUSE ANALYSIS  </strong></font></td>
                         <td>
                             <textarea name="RCA" id="RCA" size="25" style="margin: 0px; width: 600px; height: 100px;" ><%= objNcr.getRCA() != null ? objNcr.getRCA() : ""%> </textarea> 
                         </td>
                     </tr>
 
                     <tr bgcolor="#AED6F1">
-                        <td ><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>RCA_DT</strong></font></td>
+                        <td ><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>RCA_DATE</strong></font></td>
 
                         <td><input name="RCA_DT" type="text" id="RCA_DT" size="25" value="<%= objNcr.getRCA_DT() != null ? objNcr.getRCA_DT() : ""%>"readonly />
                             <a href="javascript:NewCal('RCA_DT','ddmmmyyyy')" class="isolog" ID="A_RCA_DT">
@@ -407,7 +407,7 @@
                     </tr>
 
                     <tr bgcolor="#AED6F1">
-                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>RCA_NAME  </strong></font></td>
+                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>RCA BY  </strong></font></td>
                         <td>
                             <input name="RCA_NAME" type="text" id="RCA_NAME" size="25" value="<%= objNcr.getRCA_NAME() != null ? objNcr.getRCA_NAME() : ""%>" />         
                         </td>
@@ -421,7 +421,7 @@
                     </tr>
 
                     <tr bgcolor="#AED6F1">
-                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>CORR_ACTION_DT</strong></font></td>
+                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>CORRECTIVE ACTION BY</strong></font></td>
 
                         <td><input name="CORR_ACTION_DT" type="text" id="CORR_ACTION_DT" size="25" value="<%= objNcr.getCORR_ACTION_DT() != null ? objNcr.getCORR_ACTION_DT() : ""%>" readonly />
                             <a href="javascript:NewCal('CORR_ACTION_DT','ddmmmyyyy')" class="isolog"ID="A_CORR_ACTION_DT">
@@ -525,7 +525,7 @@
                         </td>
                     </tr>
                     <tr bgcolor="#AED6F1">
-                        <td ><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>AUDITOR_REV_DT</strong></font></td>
+                        <td ><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>AUDITOR_REV_DATE</strong></font></td>
 
                         <td  ><input name="AUDITOR_REV_DT" type="text" id="AUDITOR_REV_DT" size="25" value="<%= objNcr.getAUDITOR_REV_DT() != null ? objNcr.getAUDITOR_REV_DT() : ""%>"readonly >
                             <a href="javascript:NewCal('AUDITOR_REV_DT','ddmmmyyyy')" id="A_AUDITOR_REV_DT">
@@ -557,7 +557,7 @@
 
 
                     <tr bgcolor="#AED6F1">
-                        <td ><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>NCR_CLS_CONF_DT</strong></font></td>
+                        <td ><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>NCR_CLS_CONF_DATE</strong></font></td>
 
                         <td  ><input name="NCR_CLS_CONF_DT" type="text" id="NCR_CLS_CONF_DT" size="25" value="<%= objNcr.getNCR_CLS_CONF_DT() != null ? objNcr.getNCR_CLS_CONF_DT() : ""%>"readonly />
                             <a href="javascript:NewCal('NCR_CLS_CONF_DT','ddmmmyyyy')"id="A_NCR_CLS_CONF_DT" />
