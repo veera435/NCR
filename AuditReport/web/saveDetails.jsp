@@ -149,18 +149,12 @@
                     objNcr.setHOS_ACTION(value);
                 }else if (name1.equalsIgnoreCase("HOS_REMARKS")) {
                     objNcr.setHOS_REMARKS(value);
-                }else if (name1.equalsIgnoreCase("COLEAD_AUDITOR_ACTION")) {
-                    objNcr.setCOLEAD_AUDITOR_ACTION(value);
                 }else if (name1.equalsIgnoreCase("COLEAD_AUDITOR_REMARKS")) {
                     objNcr.setCOLEAD_AUDITOR_REMARKS(value);
                 }else if (name1.equalsIgnoreCase("HOS_NAME")) {
                     objNcr.setHOS_NAME(value);
                 } else if (name1.equalsIgnoreCase("HOS_STFNO")) {
                     objNcr.setHOS_STFNO(value);
-                }else if (name1.equalsIgnoreCase("COLEAD_NAME")) {
-                    objNcr.setCOLEAD_NAME(value);
-                } else if (name1.equalsIgnoreCase("COLEAD_STFNO")) {
-                    objNcr.setCOLEAD_STFNO(value);
                 }
                 
             }
@@ -176,7 +170,7 @@
                 int i = 0;
 
                 if (NCR_NO.isEmpty() != true && Integer.parseInt(NCR_NO) > 0) {
-                    cstmt = conn.prepareCall("{call usp_20_Update_AUDIT_INT_EXT(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                    cstmt = conn.prepareCall("{call usp_20_Update_AUDIT_INT_EXT(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
                     cstmt.setInt(1, Integer.parseInt(NCR_NO));
                     cstmt.setInt(2, Integer.parseInt(STAFF_NO));
                     cstmt.setString(3, objNcr.getISO_CLAUSE());
@@ -213,12 +207,9 @@
                     cstmt.setString(33, objNcr.getAUDITOR_REMARKS());
                     cstmt.setString(34, objNcr.getHOS_ACTION());
                     cstmt.setString(35, objNcr.getHOS_REMARKS());
-                    cstmt.setString(36, objNcr.getCOLEAD_AUDITOR_ACTION());
-                    cstmt.setString(37, objNcr.getCOLEAD_AUDITOR_REMARKS());
-                    cstmt.setString(38, objNcr.getHOS_NAME());
-                    cstmt.setString(39, objNcr.getHOS_STFNO());
-                    cstmt.setString(40, objNcr.getCOLEAD_NAME());
-                    cstmt.setString(41, objNcr.getCOLEAD_STFNO());
+                    cstmt.setString(36, objNcr.getCOLEAD_AUDITOR_REMARKS());
+                    cstmt.setString(37, objNcr.getHOS_NAME());
+                    cstmt.setString(38, objNcr.getHOS_STFNO());
 
                     cstmt.executeUpdate();
                     cstmt.close();
@@ -467,19 +458,6 @@
                 <tr>
                     <td width="50%">HOS_REMARKS</td>
                     <td width="50%"><%out.println(objNcr.getHOS_REMARKS()!= null ? objNcr.getHOS_REMARKS(): "");%>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td width="50%">COLEAD_NAME</td>
-                    <td width="50%"><%out.println(objNcr.getCOLEAD_NAME());%>&nbsp;</td>
-                </tr>
-
-                <tr>
-                    <td width="50%">COLEAD_STFNO</td>
-                    <td width="50%"><%out.println(objNcr.getCOLEAD_STFNO());%>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td width="50%">COLEAD_AUDITOR_ACTION</td>
-                    <td width="50%"><%out.println(objNcr.getCOLEAD_AUDITOR_ACTION() != null ? objNcr.getCOLEAD_AUDITOR_ACTION() : "");%>&nbsp;</td>
                 </tr>
 
                 <tr>

@@ -465,17 +465,6 @@ public class NcrAudit {
         }
     }
     
-    private String colead_auditor_action;
-
-    public String getCOLEAD_AUDITOR_ACTION() {
-        return colead_auditor_action;
-    }
-
-    public void setCOLEAD_AUDITOR_ACTION(String colead_auditor_action) {
-        if (colead_auditor_action != null && colead_auditor_action.isEmpty() == false) {
-            this.colead_auditor_action = colead_auditor_action;
-        }
-    }
     
     private String colead_auditor_remarks;
 
@@ -513,29 +502,5 @@ public class NcrAudit {
         }
 
     }
-    private String COLEAD_NAME;
 
-    public String getCOLEAD_NAME() {
-        return COLEAD_NAME;
-    }
-
-    public void setCOLEAD_NAME(String colead_name) {
-        if (colead_name != null) {
-            this.COLEAD_NAME = colead_name;
-        }
-    }
-    private String COLEAD_STFNO;
-
-    public String getCOLEAD_STFNO() {
-
-        return COLEAD_STFNO;
-
-    }
-
-    public void setCOLEAD_STFNO(String colead_stfno) {
-        if (colead_stfno != null) {
-            this.COLEAD_STFNO = colead_stfno;
-        }
-
-    }
 }

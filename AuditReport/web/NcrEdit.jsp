@@ -483,30 +483,7 @@
                             <textarea name="HOS_REMARKS" id="HOS_REMARKS" size="25" style="margin: 0px; width: 600px; height: 100px;" ><%=objNcr.getHOS_REMARKS()%> </textarea>   
                         </td>
                     </tr>
-                    <tr bgcolor="#AED6F1">
-                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>COLEAD_NAME </strong></font></td>
-                        <td>
-                            <input name="COLEAD_NAME" type="text" id="COLEAD_NAME" size="25" value="<%=objNcr.getCOLEAD_NAME()%>" readonly /> 
-                        </td>
-                    </tr>
-
-                    <tr bgcolor="#AED6F1">
-                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>COLEAD_STFNO </strong></font></td>
-                        <td>
-                            <input name="COLEAD_STFNO" type="text" id="COLEAD_STFNO" size="25" value="<%=objNcr.getCOLEAD_STFNO()%>" readonly  />
-                        </td>
-                    </tr>
-                    <tr bgcolor="#AED6F1">
-                        <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>COLEAD_AUDITOR_ACTION  </strong></font></td>
-                        <td>
-                            <select name="COLEAD_AUDITOR_ACTION" id="COLEAD_AUDITOR_ACTION" >
-                                <option value="">Please Select</option>
-                                <option value="Acceptance" <%= objNcr.getCOLEAD_AUDITOR_ACTION() != null && objNcr.getCOLEAD_AUDITOR_ACTION().equalsIgnoreCase("Acceptance") ? "selected=selected" : "a"%> >Acceptance</option>
-                                <option value="Rejection" <%= objNcr.getCOLEAD_AUDITOR_ACTION() != null && objNcr.getCOLEAD_AUDITOR_ACTION().equalsIgnoreCase("Rejection") ? "selected=selected" : "b"%> >Rejection</option>
-                                <option value="To Be Discussed" <%= objNcr.getCOLEAD_AUDITOR_ACTION() != null && objNcr.getCOLEAD_AUDITOR_ACTION().equalsIgnoreCase("To Be Discussed") ? "selected=selected" : "c"%> >To Be Discussed</option>
-                            </select>             
-                        </td>
-                    </tr>
+                    
                     <tr bgcolor="#AED6F1">
                         <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif, Agency FB"><strong>COLEAD_AUDITOR_REMARKS </strong></font></td>
                         <td>

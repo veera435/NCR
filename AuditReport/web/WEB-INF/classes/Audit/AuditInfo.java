@@ -27,12 +27,10 @@ public class AuditInfo {
         //Connection conn = con.getcon();
         //Statement st = con.getSt();
         ResultSet rs = null;
-        Connection conn = con.getcon();
         Statement stmt = con.getSt();
-        CallableStatement cstmt = null;
         String qstring;
         //qstring = " select A.*,B.Audit_Name from AUDIT_INT_EXT A LEFT OUTER JOIN Audit_Area_Types B ON A.AUDIT_AREA = B.Audit_ID where NCR_NO = " + ncrno;
-        qstring = "SELECT NCR_NO, FY_YEAR,AUDIT_DATE,AUDIT_AREA, AUDITEE_NAME,AUDITEE_STAFF_NO,AUDITOR_STAFF_NO,AUDITOR_INT_NAME,AUDITOR_EXT_NAME,AUDIT_OBSERVATION,NCR_TYPE, NCR_DETAILS,NCR_PLAN_CLS_DATE,ISO_CLAUSE, DOC_REF, EMAIL,NCR_ACTUAL_CLS_DATE, AUDITOR_ACTION,ISO_COORD_REMARKS,AUDITEE_REMARKS_CLS,CORRECTION, CORR_DT,CORRECTION_NAME,RCA,RCA_DT, RCA_NAME,CORR_ACTION,CORR_ACTION_DT,CORR_ACTION_NAME,AUDITOR_REV_DT,ATTACHMENT,NCR_CLS_CONF,NCR_CLS_CONF_DT,AUDITOR_REMARKS,STAFF_NO, B.Audit_Name,HOS_ACTION,HOS_REMARKS,COLEAD_AUDITOR_ACTION,COLEAD_AUDITOR_REMARKS,HOS_NAME,HOS_STFNO,COLEAD_NAME,COLEAD_STFNO FROM AUDIT_INT_EXT A LEFT OUTER JOIN Audit_Area_Types B ON A.AUDIT_AREA = B.Audit_ID WHERE NCR_NO = " +  ncrno;
+        qstring = "SELECT NCR_NO, FY_YEAR,AUDIT_DATE,AUDIT_AREA, AUDITEE_NAME,AUDITEE_STAFF_NO,AUDITOR_STAFF_NO,AUDITOR_INT_NAME,AUDITOR_EXT_NAME,AUDIT_OBSERVATION,NCR_TYPE, NCR_DETAILS,NCR_PLAN_CLS_DATE,ISO_CLAUSE, DOC_REF, EMAIL,NCR_ACTUAL_CLS_DATE, AUDITOR_ACTION,ISO_COORD_REMARKS,AUDITEE_REMARKS_CLS,CORRECTION, CORR_DT,CORRECTION_NAME,RCA,RCA_DT, RCA_NAME,CORR_ACTION,CORR_ACTION_DT,CORR_ACTION_NAME,AUDITOR_REV_DT,ATTACHMENT,NCR_CLS_CONF,NCR_CLS_CONF_DT,AUDITOR_REMARKS,STAFF_NO, B.Audit_Name,HOS_ACTION,HOS_REMARKS,COLEAD_AUDITOR_REMARKS,HOS_NAME,HOS_STFNO FROM AUDIT_INT_EXT A LEFT OUTER JOIN Audit_Area_Types B ON A.AUDIT_AREA = B.Audit_ID WHERE NCR_NO = " +  ncrno;
         //qstring = "{CALL usp_40_GET_AUDIT_INT_EXT(?)}";
         //System.out.println("query " + qstring);
         //cstmt = conn.prepareCall(qstring);
@@ -80,12 +78,9 @@ public class AuditInfo {
             objNcr.setAUDIT_AREA_NAME(rs.getString(36));
             objNcr.setHOS_ACTION(rs.getString(37));
             objNcr.setHOS_REMARKS(rs.getString(38));
-            objNcr.setCOLEAD_AUDITOR_ACTION(rs.getString(39));
-            objNcr.setCOLEAD_AUDITOR_REMARKS(rs.getString(40));
-            objNcr.setHOS_NAME(rs.getString(41));
-            objNcr.setHOS_STFNO(rs.getString(42));
-            objNcr.setCOLEAD_NAME(rs.getString(43));
-            objNcr.setCOLEAD_STFNO(rs.getString(44));
+            objNcr.setCOLEAD_AUDITOR_REMARKS(rs.getString(39));
+            objNcr.setHOS_NAME(rs.getString(40));
+            objNcr.setHOS_STFNO(rs.getString(41));
         }
         con.Conclose();
         return objNcr;
@@ -94,7 +89,6 @@ public class AuditInfo {
     public List<AuditType> GetAuditTypes() throws SQLException {
         List<AuditType> arrAuditTypes = new ArrayList<AuditType>();
         dbcon con = new dbcon();
-        Connection conn = con.getcon();
         String qstring = " select * from Audit_Area_Types";
         Statement stmt = con.getSt();
         ResultSet rs = stmt.executeQuery(qstring);
