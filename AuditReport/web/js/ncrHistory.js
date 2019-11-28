@@ -12,7 +12,7 @@ function getHistory()
         $("#files").hide();
         $(".isolog").hide();
     } else if (acc !== null && acc !== "2") {
-        $("#AUDITOR_ACTION").prop('style', 'pointer-events: none;');
+        $("#HOD_ACTION").prop('style', 'pointer-events: none;');
         $("#ISO_CLAUSE").prop('readonly', true);
         $("#ISO_COORD_REMARKS").prop('readonly', true);
         $("#A_NCR_CLS_CONF_DT").hide();
@@ -127,31 +127,7 @@ function inihostAutoComplete()
     });
 }
 
-function inicoleadtAutoComplete()
-{
-    $("#COLEAD_NAME").autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: "coleadAudituser.jsp",
-                data: {name: request.term},
-                success: function (data) {
-                    debugger;
-                    if (data.length > 0) {
-                        data = JSON.parse(data);
-                        response(data);
-                    }
-                },
-                error: function (err) {
-                    response([]);
-                }
-            });
-            //}
-        },
-        select: function (event, ui) {
-            $('#COLEAD_STFNO').val(ui.item.Id);
-        }
-    });
-}
+
 
 function setPageAccess()
 {
@@ -162,23 +138,23 @@ function setPageAccess()
         case "0": // For Auditor
         {
             $("#DOC_REF, #AUDIT_OBSERVATION, #ISO_CLAUSE, #RCA_NAME").prop('readonly', false);
-            $("#AUDITOR_ACTION").prop('style', 'pointer-events: none;');
+            $("#HOD_ACTION").prop('style', 'pointer-events: none;');
             $("#AUDITEE_REMARKS_CLS, #CORRECTION, #CORRECTION_NAME, #RCA").prop('readonly', true);
-            $("#ISO_COORD_REMARKS, #CORR_ACTION_NAME, #CORR_ACTION, #RCA_NAME,#HOS_REMARKS,#COLEAD_AUDITOR_REMARKS").prop('readonly', true);
+            $("#ISO_COORD_REMARKS, #CORR_ACTION_NAME, #CORR_ACTION, #RCA_NAME,#HOS_REMARKS,#HOD_REMARKS").prop('readonly', true);
             $("#A_NCR_CLS_CONF_DT, #A_CORR_DT, #A_NCR_ACTUAL_CLS_DATE").hide();
             $("#A_RCA_DT, #A_CORR_ACTION_DT").hide();
             $("#COLEAD_AUDITOR_ACTION, #HOS_ACTION").prop('style', 'pointer-events: none;');
-            $("#COLEAD_NAME").prop('readonly', false);
+
 
             break;
         }
         case "1": // AUDITEE
         {
-            $("#AUDITOR_ACTION").prop('style', 'pointer-events: none;');
+            $("#HOD_ACTION").prop('style', 'pointer-events: none;');
             $("#ISO_CLAUSE,#AUDIT_OBSERVATION").prop('readonly', true);
             $("#HOS_NAME").prop('readonly', false);
             $("#NCR_CLS_CONF").prop('style', 'pointer-events: none;');
-            $("#ISO_COORD_REMARKS,#AUDITOR_REMARKS, #NCR_DETAILS, #HOS_REMARKS,#COLEAD_AUDITOR_REMARKS").prop('readonly', true);
+            $("#ISO_COORD_REMARKS,#AUDITOR_REMARKS, #NCR_DETAILS, #HOS_REMARKS,#HOD_REMARKS").prop('readonly', true);
             $("#A_NCR_CLS_CONF_DT").hide();
             $("#A_AUDITOR_REV_DT, #A_NCR_PLAN_CLS_DATE, #A_AUDIT_DATE").hide();
             $("#NCR_TYPE").prop('style', 'pointer-events: none;');
@@ -202,12 +178,11 @@ function setPageAccess()
         }
         case "3": // HOS
         {
-            $("#AUDITOR_ACTION").prop('style', 'pointer-events: none;');
+            $("#HOD_ACTION").prop('style', 'pointer-events: none;');
             $("#CORRECTION_NAME,#RCA_NAME,#RCA,#CORR_ACTION_NAME,#CORR_ACTION,#CORRECTION,#AUDITEE_REMARKS_CLS,#ISO_CLAUSE,#AUDIT_OBSERVATION,#DOC_REF").prop('readonly', true);
             $("#NCR_CLS_CONF").prop('style', 'pointer-events: none;');
-            $("#ISO_COORD_REMARKS,#AUDITOR_REMARKS, #NCR_DETAILS,#COLEAD_AUDITOR_REMARKS").prop('readonly', true);
+            $("#ISO_COORD_REMARKS,#AUDITOR_REMARKS, #NCR_DETAILS,#HOD_REMARKS").prop('readonly', true);
             $("#A_NCR_CLS_CONF_DT").hide();
-            $("#COLEAD_NAME").prop('readonly', false);
             $("#A_AUDITOR_REV_DT, #A_NCR_PLAN_CLS_DATE, #A_AUDIT_DATE").hide();
             $("#NCR_TYPE,#AUDIT_AREA,#FY_YEAR, #COLEAD_AUDITOR_ACTION").prop('style', 'pointer-events: none;');
             $("#A_NCR_CLS_CONF_DT, #A_CORR_DT, #A_NCR_ACTUAL_CLS_DATE").hide();
@@ -216,16 +191,16 @@ function setPageAccess()
             $(".isolog").hide();
             break;
         }
-        case "4": // COOLED
+        case "4": // HOD
         {
-            $("#AUDITOR_ACTION").prop('style', 'pointer-events: none;');
+            //$("#HOD_ACTION").prop('style', 'pointer-events: none;');
             $("#ISO_CLAUSE,#AUDIT_OBSERVATION,#DOC_REF").prop('readonly', true);
             $("#NCR_CLS_CONF").prop('style', 'pointer-events: none;');
             $("#ISO_COORD_REMARKS,#AUDITOR_REMARKS, #NCR_DETAILS,#HOS_REMARKS").prop('readonly', true);
-            $("#A_NCR_CLS_CONF_DT").hide();
+            //$("#A_NCR_CLS_CONF_DT").hide();
             $("#A_AUDITOR_REV_DT, #A_NCR_PLAN_CLS_DATE, #A_AUDIT_DATE").hide();
             $("#NCR_TYPE,#AUDIT_AREA,#FY_YEAR,#HOS_ACTION").prop('style', 'pointer-events: none;');
-            $("#A_NCR_CLS_CONF_DT, #A_CORR_DT, #A_NCR_ACTUAL_CLS_DATE").hide();
+            $("#A_CORR_DT, #A_NCR_ACTUAL_CLS_DATE").hide();
             $("#A_RCA_DT, #A_CORR_ACTION_DT").hide();
             $("#files").hide();
             $(".isolog").hide();
@@ -258,7 +233,7 @@ function getNCRList(aacno, staffno)
                         table = table + '<td>' + data[i].ISO_CLAUSE + '</td>';
                         table = table + '<td>' + data[i].NCR_TYPE + '</td>';
                         table = table + '<td>' + data[i].NCR_CLS_CONF + '</td>';
-                        table = table + '<td>' + data[i].AUDITOR_ACTION + '</td>';
+                        table = table + '<td>' + data[i].HOD_ACTION + '</td>';
                         table = table + '<td style="cursor:pointer;" onclick="getHistoryAJAX(' + data[i].NCRNO + ');">Click Here</td>';
                         table = table + '</tr>';
                     }
@@ -290,7 +265,7 @@ function validlogin()
     var NCR_DETAILS = document.main.NCR_DETAILS.value;
     var NCR_PLAN_CLS_DATE = document.main.NCR_PLAN_CLS_DATE.value;
     var NCR_ACTUAL_CLS_DATE = document.main.NCR_ACTUAL_CLS_DATE.value;
-    var AUDITOR_ACTION = document.main.AUDITOR_ACTION.value;
+    var HOD_ACTION = document.main.HOD_ACTION.value;
     var ISO_COORD_REMARKS = document.main.ISO_COORD_REMARKS.value;
     var AUDITEE_REMARKS_CLS = document.main.AUDITEE_REMARKS_CLS.value;
     var CORRECTION = document.main.CORRECTION.value;
@@ -307,12 +282,7 @@ function validlogin()
     var DOC_REF = document.main.DOC_REF.value;
     var NCR_CLS_CONF = document.main.NCR_CLS_CONF.value;
     var NCR_CLS_CONF_DT = document.main.NCR_CLS_CONF_DT.value;
-    //if (NCR_NO.length === 0)
-    // {
-    // alert("* Marked fields are mandatory.");
-    //document.main.NCR_NO.focus();
-    //return false;
-    //}
+
 
     if (FY_YEAR.length === 0)
     {
@@ -388,11 +358,11 @@ function validlogin()
         document.main.NCR_ACTUAL_CLS_DATE.focus();
         return false;
     }
-    if (AUDITOR_ACTION.length === 0)
+    if (HOD_ACTION.length === 0)
 
     {
         alert("* Marked fields are mandatory.");
-        document.main.AUDITOR_ACTION.focus();
+        document.main.HOD_ACTION.focus();
         return false;
     }
     if (ISO_COORD_REMARKS.length === 0)
@@ -535,4 +505,91 @@ function printForm2()
     document.body.innerHTML = printContents;
     window.print();
     document.body.innerHTML = originalContents;
+}
+
+function getImages(year)
+{
+    $.ajax({
+        url: "SchduleFiles.jsp",
+        data: {fyyear: year, fileNumber: ''},
+        success: function (data) {
+            debugger;
+            resetImageTable();
+            $('#tbFile').show();
+            data = JSON.parse(data);
+            if (data !== null) {
+                if (data.FileName1 !== "")
+                {
+                    $('#aFile1').text(data.FileName1).show();
+                    $('#imgFile1').show();
+                    $('#file1').hide();
+                }
+                if (data.FileName2 !== "")
+                {
+                    $('#aFile2').text(data.FileName2).show();
+                    $('#imgFile2').show();
+                    $('#file2').hide();
+                }
+                if (data.FileName3 !== "")
+                {
+                    $('#aFile3').text(data.FileName3).show();
+                    $('#imgFile3').show();
+                    $('#file3').hide();
+                }
+                if (data.FileName4 !== "")
+                {
+                    $('#aFile4').text(data.FileName4).show();
+                    $('#imgFile4').show();
+                    $('#file4').hide();
+                }
+            }
+        },
+        error: function (err) {
+            console.info(err);
+        }
+    });
+}
+
+function resetImageTable() {
+    $('#aFile1').text('').hide();
+    $('#imgFile1').hide();
+    $('#file1').show();
+    $('#imgFile2').hide();
+    $('#aFile2').text('').hide();
+    $('#file2').show();
+    $('#imgFile3').hide();
+    $('#aFile3').text('').hide();
+    $('#file3').show();
+    $('#imgFile4').hide();
+    $('#aFile4').text('').hide();
+    $('#file4').show();
+}
+
+function deleteFileupload(ctrlname, fileNo)
+{
+    var fileName = $('#' + ctrlname).text();
+    var year = $("#FY_YEAR").val();
+    if (ctrlname !== null && ctrlname !== '' && fileName !== null && fileName !== '')
+    {
+        var result = confirm("Are you sure want to delete ?");
+        if (result) {
+            $.ajax({
+                url: "SchduleFiles.jsp",
+                data: {fyyear: year, fileNumber: fileNo},
+                success: function (data) {
+                    debugger;
+                    data = JSON.parse(data);
+                    if (data.Success)
+                    {
+                        alert("File Deleted");
+                        getImages(year);
+                    }
+                },
+                error: function (err) {
+                    console.info(err);
+                }
+            });
+        }
+    }
+    return false;
 }

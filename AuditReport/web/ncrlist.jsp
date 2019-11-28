@@ -23,6 +23,7 @@
     String AUDITOR_AUDITEE_COORD = session.getAttribute("AUDITOR_AUDITEE_COORD").toString();
     String STAFF_NO = session.getAttribute("STAFF_NO").toString();
     String AACName = session.getAttribute("AACName").toString();
+    session.setAttribute("fileUpload", "false");
 %>
 
 <%
@@ -87,6 +88,9 @@
             <% }%>
         </select>
         <INPUT TYPE=BUTTON VALUE="Search" NAME="BUTTON" id="btnsearch" />
+        <INPUT TYPE=BUTTON VALUE="Upload Audit Schedules" <%= AUDITOR_AUDITEE_COORD.equalsIgnoreCase("2") ? "" : "style=display:none;"%> ONCLICK="document.location.href = 'UploadAuditSchedules.jsp';" NAME="BUTTON" style=" width: 200px; height: 25px; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:16px;">
+        <INPUT TYPE=BUTTON VALUE="View Audit Schedules" ONCLICK="document.location.href = 'ViewAuditSchedules.jsp';" NAME="BUTTON" style=" width: 200px; height: 25px; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:16px;">
+
 
     </p>
     <form id="subForm" name="subForm" method="post" >
@@ -114,7 +118,7 @@
                 NCR_CLS_CONF
             </th>
             <th bgcolor="#1B4F72" width="20% ">
-                AUDITOR_ACTION
+                HOD_ACTION
             </th>
             <th bgcolor="#1B4F72" width="10% ">
                 History

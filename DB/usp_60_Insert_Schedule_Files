@@ -1,0 +1,59 @@
+USE [JSP]
+GO
+/****** Object:  StoredProcedure [dbo].[usp_60_Insert_Schedule_Files]    Script Date: 11/28/2019 5:22:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+/* =============================================
+Author:		Veera
+Create date: 2019-11-20 07:26:08.720
+EXEC usp_60_Insert_Schedule_Files 
+-- ============================================= */
+ALTER PROCEDURE [dbo].[usp_60_Insert_Schedule_Files]
+(
+	@FY_YEAR VARCHAR(20),
+	@INT_SCH_1_FileName VARCHAR(500),
+	@INT_SCH_1_Image IMAGE,
+	@INT_SCH_2_FileName VARCHAR(500),
+	@INT_SCH_2_Image IMAGE,
+	@INT_SCH_3_FileName VARCHAR(500),
+	@INT_SCH_3_Image IMAGE,
+	@INT_SCH_4_FileName VARCHAR(500),
+	@INT_SCH_4_Image IMAGE
+)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	IF NOT EXISTS (SELECT * FROM [dbo].[Schedule] WHERE FY_YEAR = @FY_YEAR)
+	BEGIN
+		INSERT INTO Schedule(FY_YEAR, INT_SCH_1_FileName, INT_SCH_1_Image, INT_SCH_2_FileName, INT_SCH_2_Image, INT_SCH_3_FileName, INT_SCH_3_Image, INT_SCH_4_FileName, INT_SCH_4_Image) 
+			VALUES(@FY_YEAR, @INT_SCH_1_FileName, @INT_SCH_1_Image, @INT_SCH_2_FileName, @INT_SCH_2_Image, @INT_SCH_3_FileName, @INT_SCH_3_Image, @INT_SCH_4_FileName, @INT_SCH_4_Image)
+	END
+	ELSE
+	BEGIN
+		IF(@INT_SCH_1_FileName IS NOT NULL AND @INT_SCH_1_FileName <> '' AND @INT_SCH_1_Image IS NOT NULL)
+		BEGIN
+			UPDATE Schedule SET INT_SCH_1_FileName = @INT_SCH_1_FileName, INT_SCH_1_Image = @INT_SCH_1_Image  WHERE FY_YEAR = @FY_YEAR
+		END
+
+		IF(@INT_SCH_2_FileName IS NOT NULL AND @INT_SCH_2_FileName <> '' AND @INT_SCH_2_Image IS NOT NULL)
+		BEGIN
+			UPDATE Schedule SET INT_SCH_2_FileName = @INT_SCH_2_FileName, INT_SCH_2_Image = @INT_SCH_2_Image  WHERE FY_YEAR = @FY_YEAR
+		END
+
+		IF(@INT_SCH_3_FileName IS NOT NULL AND @INT_SCH_3_FileName <> '' AND @INT_SCH_3_Image IS NOT NULL)
+		BEGIN
+			UPDATE Schedule SET INT_SCH_3_FileName = @INT_SCH_3_FileName, INT_SCH_3_Image = @INT_SCH_3_Image  WHERE FY_YEAR = @FY_YEAR
+		END
+
+		IF(@INT_SCH_4_FileName IS NOT NULL AND @INT_SCH_4_FileName <> '' AND @INT_SCH_4_Image IS NOT NULL)
+		BEGIN
+			UPDATE Schedule SET INT_SCH_4_FileName = @INT_SCH_4_FileName, INT_SCH_4_Image = @INT_SCH_4_Image  WHERE FY_YEAR = @FY_YEAR
+		END
+	END
+END
